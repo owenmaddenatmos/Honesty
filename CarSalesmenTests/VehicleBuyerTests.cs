@@ -19,9 +19,9 @@ namespace CarSalesmenTests
     {
         public IEnumerable<VehicleReceipt> BuyVehicles(IEnumerable<VehicleRequest> vehiclesToBuy)
         {
-            var judsonsJallopies = new JudsonsJallopies();
+            JudsonsJallopies judsonsJallopies = new JudsonsJallopies();
             IMattsMotors mattsMotors = new MattsMotors();
-            var jimmysAutomobiles = new JimmysAutomobiles();
+            JimmysAutomobiles jimmysAutomobiles = new JimmysAutomobiles();
             throw new NotImplementedException();
         }
     }

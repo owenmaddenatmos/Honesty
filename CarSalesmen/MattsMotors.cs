@@ -40,7 +40,7 @@ namespace CarSalesmen
 
         public VehicleReceipt BuyVehicle(MattsTrustworthyQuote quote)
         {
-            var price = new PriceInPounds(_prices.First(v => v.Model == quote.Model && v.Age == quote.Age).Price * 2.0);
+            var price = new PriceInPounds(_prices.First(v => v.Model == quote.Model && v.Age == quote.Age).Price * 0.1);
             return new VehicleReceipt(price, quote.Model);
         }
 
@@ -69,7 +69,8 @@ namespace CarSalesmen
         }
 
         public VehicleModel Model { get; }
-        
+
+        /// Prices are in crypto currency atmoscoin, cause we are cutting edge. Exchange rate is one atmoscoin = 10p 
         public double Price { get; }
         
         public double Age { get; }

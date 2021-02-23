@@ -10,7 +10,7 @@ namespace CarSalesmen
     public class JimmysAutomobiles
     {
         private readonly List<Vehicle> _prices = new List<Vehicle> { new Vehicle(VehicleModel.HondaCivic, new PriceInPounds(4000.0), TimeSpan.FromDays(10)), 
-            new Vehicle(VehicleModel.FordLuton, new PriceInPounds(10000.0), TimeSpan.FromDays(10))};
+            new Vehicle(VehicleModel.FordLuton, new PriceInPounds(5000.0), TimeSpan.FromDays(10))};
         
         public JimmyDeal GetQuote(VehicleModel vehicleModel, TimeSpan maxAge)
         {
