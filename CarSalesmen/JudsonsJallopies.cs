@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using Atmos.Shared.Code.FunctionalMethods.ResultObject;
 
 namespace CarSalesmen
 {
@@ -11,20 +9,17 @@ namespace CarSalesmen
     /// </summary>
     public class JudsonsJallopies
     {
-        private List<Vehicle> _prices;
-
-        public JudsonsJallopies()
-        {
-            _prices = new List<Vehicle> { new Vehicle(VehicleModel.HondaJazz, new PriceInPounds(1000.0), TimeSpan.FromDays(40)), 
-                new Vehicle(VehicleModel.HondaCivic, new PriceInPounds(70000.0), TimeSpan.Zero)};
-        }
-
+        private readonly List<Vehicle> _prices = new List<Vehicle> { new Vehicle(VehicleModel.HondaJazz, new PriceInPounds(800.0), TimeSpan.FromDays(40)), 
+            new Vehicle(VehicleModel.HondaCivic, new PriceInPounds(70000.0), TimeSpan.Zero)};
+        
         public JudsonsUnbeatableQuote GetQuote(VehicleModel vehicleModel, TimeSpan maxAge)
         {
             var vehicle = _prices.FirstOrDefault(v => v.Model == vehicleModel && v.Age < maxAge);
             if (vehicle != null)
             {
-                return new JudsonsUnbeatableQuote(vehicle.Model, vehicle.Price, vehicle.Age);
+                var quote = new JudsonsUnbeatableQuote(vehicle.Model, vehicle.Price, vehicle.Age);
+                vehicle.Price = new PriceInPounds(vehicle.Price.Amount * 1.5); // This car is getting popular let's increase the price. 
+                return quote;
             }
             return null;
         }
@@ -38,7 +33,7 @@ namespace CarSalesmen
         private class Vehicle
         {
             public VehicleModel Model { get; }
-            public PriceInPounds Price { get; }
+            public PriceInPounds Price { get; set; }
             public TimeSpan Age { get; }
 
             public Vehicle(VehicleModel model, PriceInPounds price, TimeSpan age)

@@ -9,24 +9,16 @@ namespace CarSalesmen
     /// </summary>
     public class JimmysAutomobiles
     {
-        private List<Vehicle> _prices;
-
-        public JimmysAutomobiles()
-        {
-            _prices = new List<Vehicle> { new Vehicle(VehicleModel.HondaJazz, new PriceInPounds(1000.0), TimeSpan.FromDays(40)), 
-                new Vehicle(VehicleModel.HondaCivic, new PriceInPounds(70000.0), TimeSpan.Zero)};
-        }
-
+        private readonly List<Vehicle> _prices = new List<Vehicle> { new Vehicle(VehicleModel.HondaCivic, new PriceInPounds(4000.0), TimeSpan.FromDays(10)), 
+            new Vehicle(VehicleModel.FordLuton, new PriceInPounds(10000.0), TimeSpan.FromDays(10))};
+        
         public JimmyDeal GetQuote(VehicleModel vehicleModel, TimeSpan maxAge)
         {
             if (maxAge > TimeSpan.FromDays(60)) throw new ArgumentException("We don't sell old bangers here, get down to MattsMotors for that kind of rubbish");
             
             var vehicle = _prices.FirstOrDefault(v => v.Model == vehicleModel && v.Age < maxAge);
-            if (vehicle != null)
-            {
-                return new JimmyDeal(vehicle.Model, vehicle.Price, vehicle.Age);
-            }
-            return null;
+            return vehicle != null ? new JimmyDeal(vehicle.Model, vehicle.Price, vehicle.Age) 
+                : new JimmyDeal(VehicleModel.PushBike, new PriceInPounds(200), TimeSpan.Zero);
         }
 
         public VehicleReceipt BuyVehicle(JimmyDeal quote)

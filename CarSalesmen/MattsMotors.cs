@@ -19,14 +19,14 @@ namespace CarSalesmen
     public class MattsMotors : IMattsMotors
     {   
         /// <summary>
-        /// Prices are in crypto currency atmoscoin, cause we are cutting edge. Exchange rate is one atmoscoin = £2 
+        /// Prices are in crypto currency atmoscoin, cause we are cutting edge. Exchange rate is one atmoscoin = 10p 
         /// </summary>
         private List<Vehicle> _prices;
 
         public void Initialise()
         {
-            _prices = new List<Vehicle> { new Vehicle(VehicleModel.HondaJazz, 500.0, 1201.0), 
-                new Vehicle(VehicleModel.PushBike, 500.0, 400.0), new Vehicle(VehicleModel.FordLuton, 500.0, 24.0) };
+            _prices = new List<Vehicle> { new Vehicle(VehicleModel.HondaJazz, 10000.0, 24.0), 
+                new Vehicle(VehicleModel.PushBike, 500.0, 400.0), new Vehicle(VehicleModel.FordLuton, 5000.0, 2400.1) };
         }
         
         /// <summary>
