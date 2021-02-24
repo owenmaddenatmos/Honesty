@@ -19,25 +19,11 @@ namespace CarSalesmenTests
     {
         public IEnumerable<VehicleReceipt> BuyVehicles(IEnumerable<VehicleRequest> vehiclesToBuy)
         {
+            var receipts = new List<VehicleReceipt>();
             JudsonsJallopies judsonsJallopies = new JudsonsJallopies();
             IMattsMotors mattsMotors = new MattsMotors();
-            
             JimmysAutomobiles jimmysAutomobiles = new JimmysAutomobiles();
 
-            foreach (var vehicleRequest in vehiclesToBuy)
-            {
-                var mattPrice = mattsMotors.GetPrice(vehicleRequest.RequestedModel, vehicleRequest.MaxAge.TotalHours);
-
-                var judPrice = judsonsJallopies.GetQuote(vehicleRequest.RequestedModel, vehicleRequest.MaxAge);
-
-                var jimmyPrice = jimmysAutomobiles.GetQuote(vehicleRequest.RequestedModel, vehicleRequest.MaxAge);
-
-                if (mattPrice.Price < judPrice.Price.Amount)
-                {
-                }
-
-            }
-            
             throw new NotImplementedException();
         }
     }

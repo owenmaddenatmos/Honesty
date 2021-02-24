@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CarSalesmen
@@ -34,6 +35,8 @@ namespace CarSalesmen
         /// </summary>
         public MattsTrustworthyQuote GetPrice(VehicleModel vehicleModel, double maxAge)
         {
+            if (_prices == null) throw new Exception("You haven't initialised me yet");
+            
             var vehicle = _prices.FirstOrDefault(v => v.Model == vehicleModel && v.Age < maxAge);
             return new MattsTrustworthyQuote(vehicleModel, vehicle?.Price ?? -100.0, vehicle?.Age ?? 0.0);
         }

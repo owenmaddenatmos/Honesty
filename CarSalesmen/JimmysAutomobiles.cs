@@ -16,9 +16,8 @@ namespace CarSalesmen
         {
             if (maxAge > TimeSpan.FromDays(60)) throw new ArgumentException("We don't sell old bangers here, get down to MattsMotors for that kind of rubbish");
             
-            var vehicle = _prices.FirstOrDefault(v => v.Model == vehicleModel && v.Age < maxAge);
-            return vehicle != null ? new JimmyDeal(vehicle.Model, vehicle.Price, vehicle.Age) 
-                : new JimmyDeal(VehicleModel.PushBike, new PriceInPounds(200), TimeSpan.Zero);
+            var vehicle = _prices.First(v => v.Model == vehicleModel && v.Age < maxAge);
+            return new JimmyDeal(vehicle.Model, vehicle.Price, vehicle.Age); 
         }
 
         public VehicleReceipt BuyVehicle(JimmyDeal quote)

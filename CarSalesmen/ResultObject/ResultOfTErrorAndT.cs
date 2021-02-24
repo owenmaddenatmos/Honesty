@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Atmos.Shared.Code.FunctionalMethods.ResultObject
+namespace CarSalesmen.ResultObject
 {
     public class Result<TError, T> : Result<TError>
     {
