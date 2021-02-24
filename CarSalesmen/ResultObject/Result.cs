@@ -4,22 +4,22 @@
     {
         public static Result<TError> Ok<TError>()
         {
-            return new(true, default);
+            return new Result<TError>(true, default(TError));
         }
 
         public static Result<TError, TValue> Ok<TError, TValue>(TValue value)
         {
-            return new(value, true, default);
+            return new Result<TError, TValue>(value, true, default(TError));
         }
 
         public static Result<TError> Fail<TError>(TError error)
         {
-            return new(false, error);
+            return new Result<TError>(false, error);
         }
 
         public static Result<TError, TValue> Fail<TError, TValue>(TError error)
         {
-            return new(default, false, error);
+            return new Result<TError, TValue>(default(TValue), false, error);
         }
     }
 }
